@@ -17,7 +17,10 @@ enum class ErrorCode(
     MEMBER_NOT_FOUND("유저를 찾지 못했습니다",404),
     EMAIL_NOT_FOUND("이메일이 존재하지 않습니다",404),
 
-    MISMATCH_AUTHKEY("인증번호가 일치하지 않습니다.",400)
+    MISMATCH_AUTHKEY("인증번호가 일치하지 않습니다.",400),
+    NOT_VERIFY_EMAIL("인증되지 않은 이메일입니다",401),
+
+    MISMATCH_PASSWORD("비밀번호가 일치하지 않습니다.",400)
 
 
     ;

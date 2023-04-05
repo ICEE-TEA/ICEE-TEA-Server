@@ -3,7 +3,7 @@ package com.example.iceeteaserver.global.util
 import com.example.iceeteaserver.domain.member.entity.Member
 import com.example.iceeteaserver.domain.member.exception.MemberNotFoundException
 import com.example.iceeteaserver.domain.member.repository.MemberRepository
-import com.example.iceeteaserver.global.security.jwt.auth.AuthDetails
+import com.example.iceeteaserver.global.security.auth.AuthDetails
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
