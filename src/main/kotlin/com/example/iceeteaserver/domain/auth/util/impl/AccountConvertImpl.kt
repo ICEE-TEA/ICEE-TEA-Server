@@ -1,6 +1,7 @@
 package com.example.iceeteaserver.domain.auth.util.impl
 
 import com.example.iceeteaserver.domain.auth.presentation.dto.MemberDto
+import com.example.iceeteaserver.domain.auth.presentation.dto.request.UserLoginRequest
 import com.example.iceeteaserver.domain.auth.presentation.dto.request.UserSignupRequest
 import com.example.iceeteaserver.domain.auth.util.AccountConverter
 import com.example.iceeteaserver.domain.member.entity.Member
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Component
 class AccountConvertImpl : AccountConverter{
     override fun todo(userSignupRequest: UserSignupRequest): MemberDto =
         MemberDto(-1,userSignupRequest.email,userSignupRequest.password,userSignupRequest.passwordCheck,userSignupRequest.name,Role.MEMBER)
+
+    override fun todo(userLoginRequest: UserLoginRequest): MemberDto =
+        MemberDto(-1,userLoginRequest.email,userLoginRequest.password,"","", Role.MEMBER)
 
     override fun toEntity(memberDto: MemberDto, encodePassword: String): Member =
         Member(memberDto.email,encodePassword,memberDto.name, mutableListOf(Role.MEMBER))
