@@ -1,10 +1,10 @@
 package com.example.iceeteaserver.global.security.jwt
 
 import com.example.iceeteaserver.global.role.Role
-import com.example.iceeteaserver.global.security.jwt.auth.AuthDetailsService
-import com.example.iceeteaserver.global.security.jwt.exception.ExpiredTokenException
-import com.example.iceeteaserver.global.security.jwt.exception.InvalidTokenException
-import com.example.iceeteaserver.global.security.jwt.exception.RoleNotExistException
+import com.example.iceeteaserver.global.security.auth.AuthDetailsService
+import com.example.iceeteaserver.global.security.exception.ExpiredTokenException
+import com.example.iceeteaserver.global.security.exception.InvalidTokenException
+import com.example.iceeteaserver.global.security.exception.RoleNotExistException
 import com.example.iceeteaserver.global.security.jwt.properties.JwtProperties
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException

@@ -1,4 +1,4 @@
-package com.example.iceeteaserver.global.security.jwt.auth
+package com.example.iceeteaserver.global.security.auth
 
 import com.example.iceeteaserver.domain.member.entity.Member
 import org.springframework.security.core.GrantedAuthority
