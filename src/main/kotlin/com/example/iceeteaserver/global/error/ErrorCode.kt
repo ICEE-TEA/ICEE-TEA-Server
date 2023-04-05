@@ -14,7 +14,10 @@ enum class ErrorCode(
     TOKEN_EXPIRE("토큰이 만료되었습니다",403),
     IVALID_TOKEN("토큰이 유효하지 않습니다",403),
 
-    MEMBER_NOT_FOUND("유저를 찾지 못했습니다",404)
+    MEMBER_NOT_FOUND("유저를 찾지 못했습니다",404),
+    EMAIL_NOT_FOUND("이메일이 존재하지 않습니다",404),
+
+    MISMATCH_AUTHKEY("인증번호가 일치하지 않습니다.",400)
 
 
     ;

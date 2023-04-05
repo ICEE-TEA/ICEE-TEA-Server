@@ -41,7 +41,5 @@ spring:
 
 
 jwt:
-  # ICEE * 4
   accessSecret: ${ACCESS_SECRET}
-  # TEA * 4
   refreshSecret: ${REFRESH_SECRET}
