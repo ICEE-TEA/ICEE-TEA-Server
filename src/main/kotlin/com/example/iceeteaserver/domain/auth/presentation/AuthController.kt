@@ -1,6 +1,9 @@
 package com.example.iceeteaserver.domain.auth.presentation
 
+import com.example.iceeteaserver.domain.auth.presentation.dto.request.UserLoginRequest
 import com.example.iceeteaserver.domain.auth.presentation.dto.request.UserSignupRequest
+import com.example.iceeteaserver.domain.auth.presentation.dto.response.TokenResponse
+import com.example.iceeteaserver.domain.auth.service.UserLoginService
 import com.example.iceeteaserver.domain.auth.service.UserSignupService
 import com.example.iceeteaserver.domain.auth.util.AccountConverter
 import org.springframework.http.HttpStatus
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/auth")
 class AuthController(
     private val userSignupService: UserSignupService,
+    private val userLoginService: UserLoginService,
     private val accountConverter: AccountConverter
 ) {
 
@@ -23,6 +27,13 @@ class AuthController(
         accountConverter.todo(userSignupRequest)
             .let { userSignupService.execute(it) }
             .let { return ResponseEntity.status(HttpStatus.CREATED).build() }
+    }
+
+    @PostMapping("/login")
+    fun login(@RequestBody userLoginRequest: UserLoginRequest) : ResponseEntity<TokenResponse>{
+        accountConverter.todo(userLoginRequest)
+            .let { userLoginService.execute(it) }
+            .let { return ResponseEntity.ok(it) }
     }
 
 }
