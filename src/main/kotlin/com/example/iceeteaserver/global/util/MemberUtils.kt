@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
-class MemberUtilImpl(
+class MemberUtils(
     private val memberRepository: MemberRepository
 ) {
     @Transactional(readOnly = true, rollbackFor = [Exception::class])
