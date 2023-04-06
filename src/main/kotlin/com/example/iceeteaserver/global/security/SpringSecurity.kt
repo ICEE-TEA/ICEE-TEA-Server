@@ -47,10 +47,10 @@ open class SecurityConfig(
             .antMatchers(HttpMethod.PATCH, "/member/**").authenticated()
             .antMatchers(HttpMethod.DELETE, "/member/**").authenticated()
 
-            // application
-            .antMatchers(HttpMethod.POST,"/application/**").authenticated()
-            .antMatchers(HttpMethod.GET, "/application/**").authenticated()
-            .antMatchers(HttpMethod.DELETE, "/application/**").authenticated()
+            // purchase
+            .antMatchers(HttpMethod.POST,"/purchase/**").authenticated()
+            .antMatchers(HttpMethod.GET, "/purchase/**").authenticated()
+            .antMatchers(HttpMethod.DELETE, "/purchase/**").authenticated()
 
             .anyRequest().denyAll()
             .and()
