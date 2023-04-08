@@ -52,6 +52,9 @@ open class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/purchase/**").authenticated()
             .antMatchers(HttpMethod.DELETE, "/purchase/**").authenticated()
 
+            // admin
+            .antMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ADMIN")
+
             .anyRequest().denyAll()
             .and()
             .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter::class.java)
