@@ -44,8 +44,7 @@ open class SecurityConfig(
 
 
             // member
-            .antMatchers(HttpMethod.PATCH, "/member/**").authenticated()
-            .antMatchers(HttpMethod.DELETE, "/member/**").authenticated()
+            .antMatchers(HttpMethod.GET, "/member/**").authenticated()
 
             // purchase
             .antMatchers(HttpMethod.POST,"/purchase/**").authenticated()
