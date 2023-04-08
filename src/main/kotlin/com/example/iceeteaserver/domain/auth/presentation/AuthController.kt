@@ -33,7 +33,7 @@ class AuthController(
             .let { return ResponseEntity.status(HttpStatus.CREATED).build() }
     }
 
-    @PostMapping("/login")
+    @PostMapping("/signin")
     fun login(@RequestBody userLoginRequest: UserLoginRequest) : ResponseEntity<TokenResponse>{
         accountConverter.todo(userLoginRequest)
             .let { userLoginService.execute(it) }
