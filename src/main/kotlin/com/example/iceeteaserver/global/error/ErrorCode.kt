@@ -6,6 +6,7 @@ enum class ErrorCode(
 ) {
 
     ROLE_NOT_FOUND("역할이 존재하지 않습니다",404),
+    NOT_EXIST_REFRESHTOKEN("존재하지 않은 refreshToken입니다.",404),
 
     DUPLICATE_EMAIL("중복된 이메일 입니다",409),
     MANY_REQUEST_EMAIL("이메일 요청이 5번을 초과했습니다",429),
@@ -21,9 +22,12 @@ enum class ErrorCode(
     NOT_VERIFY_EMAIL("인증되지 않은 이메일입니다",401),
 
     MISMATCH_PASSWORD("비밀번호가 일치하지 않습니다.",400),
+
     ALREADY_EXIST_EMAIL("이미 존재하는 이메일입니다",400),
     NOT_EXIST_BUYER("아직 구매자가 없습니다.",404)
 
 
+
     ;
 }
+
