@@ -1,6 +1,7 @@
 package com.example.iceeteaserver.domain.purchase.service.impl
 
 import com.example.iceeteaserver.domain.purchase.entity.Purchase
+import com.example.iceeteaserver.domain.purchase.presentation.dto.request.PurchaseRequest
 import com.example.iceeteaserver.domain.purchase.repository.PurchaseRepository
 import com.example.iceeteaserver.domain.purchase.service.PurchaseIceteaService
 import com.example.iceeteaserver.global.util.MemberUtils
@@ -14,7 +15,7 @@ class PurchaseIceteaServiceImpl(
     private val memberUtils: MemberUtils
 ) : PurchaseIceteaService{
     @Transactional
-    override fun execute(flavor: String, size: Long, pay: String) {
-        purchaseRepository.save(Purchase(flavor, size, pay,memberUtils.currentMember()))
+    override fun execute(purchaseRequest : PurchaseRequest) {
+        purchaseRepository.save(Purchase(purchaseRequest.flavor,purchaseRequest.size,purchaseRequest.pay,memberUtils.currentMember()))
     }
 }
