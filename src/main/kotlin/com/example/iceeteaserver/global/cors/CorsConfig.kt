@@ -1,6 +1,3 @@
-
-
-
 package com.example.iceeteaserver.global.cors
 
 import org.springframework.context.annotation.Configuration
