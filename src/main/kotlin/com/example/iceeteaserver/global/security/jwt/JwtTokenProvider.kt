@@ -6,6 +6,7 @@ import com.example.iceeteaserver.global.security.exception.ExpiredTokenException
 import com.example.iceeteaserver.global.security.exception.InvalidTokenException
 import com.example.iceeteaserver.global.security.exception.RoleNotExistException
 import com.example.iceeteaserver.global.security.jwt.properties.JwtProperties
+import com.example.iceeteaserver.global.security.jwt.properties.TokenTimeProperties
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts
@@ -22,29 +23,27 @@ import javax.servlet.http.HttpServletRequest
 @Component
 class JwtTokenProvider(
     private val jwtProperties: JwtProperties,
-    private val authDetailsService: AuthDetailsService
+    private val tokenTimeProperties: TokenTimeProperties,
+    private val authDetailsService: AuthDetailsService,
 ) {
     companion object {
         const val ACCESS_TYPE = "access"
         const val REFRESH_TYPE = "refresh"
         const val TOKEN_PREFIX = "Bearer "
         const val AUTHORITY = "authority"
-        const val ACCESS_EXP = 60L * 1500 // 15 min
-        const val REFRESH_EXP = 60L * 60 * 24 * 7 // 1 weeks
     }
 
     val accessExpiredTime: ZonedDateTime
-        get() = ZonedDateTime.now().plusSeconds(ACCESS_EXP)
+        get() = ZonedDateTime.now().plusSeconds(tokenTimeProperties.accessTime)
 
-
-    val refreshExpireTime: ZonedDateTime
-        get() = ZonedDateTime.now().plusSeconds(REFRESH_EXP)
+    val refreshExpiredTime: ZonedDateTime
+        get() = ZonedDateTime.now().plusSeconds(tokenTimeProperties.refreshTime)
 
     fun generateAccessToken(email: String): String =
-        generateToken(email, ACCESS_TYPE, jwtProperties.accessSecret, ACCESS_EXP)
+        generateToken(email, ACCESS_TYPE, jwtProperties.accessSecret, tokenTimeProperties.accessTime)
 
     fun generateRefreshToken(email: String): String =
-        generateToken(email, REFRESH_TYPE, jwtProperties.refreshSecret, REFRESH_EXP)
+        generateToken(email, REFRESH_TYPE, jwtProperties.refreshSecret, tokenTimeProperties.refreshTime)
 
     fun resolveToken(req: HttpServletRequest): String? {
         val token = req.getHeader("Authorization") ?: return null
@@ -57,11 +56,10 @@ class JwtTokenProvider(
 
     fun exactRoleFromRefreshToken(refresh: String): Role {
         return when (getTokenBody(refresh, jwtProperties.refreshSecret).get(AUTHORITY, String::class.java)) {
-            "USER" -> Role.MEMBER
+            "MEMBER" -> Role.MEMBER
             "ADMIN" -> Role.ADMIN
             else -> throw RoleNotExistException()
         }
-
     }
 
     fun exactTypeFromRefreshToken(refresh: String): String =
@@ -75,7 +73,7 @@ class JwtTokenProvider(
     fun parseToken(token: String): String? =
         if (token.startsWith(TOKEN_PREFIX)) token.replace(TOKEN_PREFIX, "") else null
 
-    private fun generateToken(email: String, type: String, secret: Key, exp: Long): String {
+    fun generateToken(email: String, type: String, secret: Key, exp: Long): String {
         val claims = Jwts.claims().setSubject(email)
         claims["type"] = type
         return Jwts.builder()
