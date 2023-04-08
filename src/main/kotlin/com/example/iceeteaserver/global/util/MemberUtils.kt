@@ -10,9 +10,10 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
-class MemberUtilImpl(
+class MemberUtils(
     private val memberRepository: MemberRepository
-) {
+){
+
     @Transactional(readOnly = true, rollbackFor = [Exception::class])
     fun currentMember(): Member {
         val principal = SecurityContextHolder.getContext().authentication.principal
@@ -21,9 +22,10 @@ class MemberUtilImpl(
         } else {
             principal.toString()
         }
+        println(email)
         return findMemberByEmail(email)
     }
-
     fun findMemberByEmail(email: String): Member =
         memberRepository.findByEmail(email) ?: throw MemberNotFoundException()
+
 }

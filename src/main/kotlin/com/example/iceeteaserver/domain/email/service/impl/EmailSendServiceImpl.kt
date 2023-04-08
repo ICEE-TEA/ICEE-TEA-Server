@@ -48,11 +48,7 @@ class EmailSendServiceImpl (
         }catch (e : MessagingException){
             throw EmailSendFailException()
         }
-
-
     }
-
-
     fun generateCertificationNumber(number: Int = 9999) = (0..number).random()
         .toString()
         .padStart(number.toString().length, '0')
