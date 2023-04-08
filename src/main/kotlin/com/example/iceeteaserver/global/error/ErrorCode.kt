@@ -21,6 +21,7 @@ enum class ErrorCode(
     NOT_VERIFY_EMAIL("인증되지 않은 이메일입니다",401),
 
     MISMATCH_PASSWORD("비밀번호가 일치하지 않습니다.",400),
+    ALREADY_EXIST_EMAIL("이미 존재하는 이메일입니다",400),
     NOT_EXIST_BUYER("아직 구매자가 없습니다.",404)
 
 
