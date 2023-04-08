@@ -12,7 +12,8 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 class MemberUtils(
     private val memberRepository: MemberRepository
-) {
+){
+
     @Transactional(readOnly = true, rollbackFor = [Exception::class])
     fun currentMember(): Member {
         val principal = SecurityContextHolder.getContext().authentication.principal
@@ -21,9 +22,10 @@ class MemberUtils(
         } else {
             principal.toString()
         }
+        println(email)
         return findMemberByEmail(email)
     }
-
     fun findMemberByEmail(email: String): Member =
         memberRepository.findByEmail(email) ?: throw MemberNotFoundException()
+
 }

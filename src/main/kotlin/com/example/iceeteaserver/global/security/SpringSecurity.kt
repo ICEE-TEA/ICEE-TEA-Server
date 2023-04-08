@@ -1,6 +1,6 @@
 package com.example.iceeteaserver.global.security
 
-import com.example.iceeteaserver.global.filter.JwtTokenFilter
+import com.example.iceeteaserver.global.filter.JwtRequestFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 open class SecurityConfig(
-    private val jwtTokenFilter: JwtTokenFilter
+    private val jwtRequestFilter: JwtRequestFilter
 ) {
 
     @Bean
@@ -54,7 +54,7 @@ open class SecurityConfig(
 
             .anyRequest().denyAll()
             .and()
-            .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
             .build()
 
     @Bean

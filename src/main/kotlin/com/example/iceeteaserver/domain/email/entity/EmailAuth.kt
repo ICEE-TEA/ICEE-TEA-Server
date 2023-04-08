@@ -4,7 +4,7 @@ import org.hibernate.annotations.ColumnDefault
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash
 
-@RedisHash(value = "emailAuth", timeToLive = 60 * 15)
+@RedisHash(value = "emailAuth", timeToLive = 60 * 30)
 class EmailAuth(
 
     @Id

@@ -8,6 +8,7 @@ import com.example.iceeteaserver.domain.member.exception.MemberNotFoundException
 import com.example.iceeteaserver.domain.member.repository.MemberRepository
 import com.example.iceeteaserver.global.security.jwt.JwtTokenProvider
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 
 @Component
 class JwtTokenUtilImpl(
@@ -16,11 +17,13 @@ class JwtTokenUtilImpl(
     private val refreshTokenRepository: RefreshTokenRepository
 
 ) : JwtTokenUtil {
+
+    @Transactional
     override fun generateToken(email: String): TokenResponse {
-        memberRepository.findByEmail(email) ?: MemberNotFoundException()
+        val member = memberRepository.findByEmail(email) ?: MemberNotFoundException()
         val accessToken = jwtTokenProvider.generateAccessToken(email)
         val refreshToken = jwtTokenProvider.generateRefreshToken(email)
-        refreshTokenRepository.save(RefreshToken(email,refreshToken,60L * 60 * 24 * 7 ))
+        refreshTokenRepository.save(RefreshToken(email,refreshToken))
         return TokenResponse(accessToken,refreshToken,jwtTokenProvider.accessExpiredTime)
     }
 }
