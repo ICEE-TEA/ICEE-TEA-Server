@@ -3,10 +3,10 @@ package com.example.iceeteaserver.domain.purchase.presentation.dto.request
 import javax.validation.constraints.NotBlank
 
 data class PurchaseRequest(
-    @NotBlank
+    @field:NotBlank
     val flavor : String,
-    @NotBlank
+    @field:NotBlank
     val size : Long,
-    @NotBlank
+    @field:NotBlank
     val pay : String
 )

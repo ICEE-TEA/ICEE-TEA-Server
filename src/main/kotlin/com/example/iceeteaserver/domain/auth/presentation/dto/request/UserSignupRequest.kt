@@ -3,13 +3,13 @@ package com.example.iceeteaserver.domain.auth.presentation.dto.request
 import javax.validation.constraints.NotBlank
 
 data class UserSignupRequest(
-    @NotBlank
+    @field:NotBlank
     val email : String,
-    @NotBlank
+    @field:NotBlank
     val password : String,
-    @NotBlank
+    @field:NotBlank
     val passwordCheck : String,
-    @NotBlank
+    @field:NotBlank
     val name : String,
 
 )
