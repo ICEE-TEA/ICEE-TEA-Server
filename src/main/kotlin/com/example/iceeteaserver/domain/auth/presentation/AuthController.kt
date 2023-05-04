@@ -5,7 +5,7 @@ import com.example.iceeteaserver.domain.auth.presentation.dto.request.UserSignup
 import com.example.iceeteaserver.domain.auth.presentation.dto.response.TokenResponse
 import com.example.iceeteaserver.domain.auth.service.UserLoginService
 import com.example.iceeteaserver.domain.auth.service.UserSignupService
-import com.example.iceeteaserver.domain.auth.service.impl.TokenReissuanceService
+import com.example.iceeteaserver.domain.auth.service.impl.TokenReissueService
 import com.example.iceeteaserver.domain.auth.util.AccountConverter
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController(
     private val userSignupService: UserSignupService,
     private val userLoginService: UserLoginService,
-    private val tokenReissuanceService: TokenReissuanceService,
+    private val tokenReissueService: TokenReissueService,
     private val accountConverter: AccountConverter
 ) {
 
@@ -34,17 +34,15 @@ class AuthController(
     }
 
     @PostMapping("/signin")
-    fun login(@RequestBody userLoginRequest: UserLoginRequest) : ResponseEntity<TokenResponse>{
+    fun login(@RequestBody userLoginRequest: UserLoginRequest) : ResponseEntity<TokenResponse> =
         accountConverter.todo(userLoginRequest)
             .let { userLoginService.execute(it) }
-            .let { return ResponseEntity.ok(it) }
-    }
+            .let { ResponseEntity.ok(it) }
 
     @PatchMapping
-    fun reIssueToken(@RequestHeader("RefreshToken") refreshToken : String) : ResponseEntity<TokenResponse>{
-        tokenReissuanceService.execute(refreshToken)
-            .let { return ResponseEntity.ok(it) }
+    fun reIssueToken(@RequestHeader("RefreshToken") refreshToken : String) : ResponseEntity<TokenResponse> =
+        tokenReissueService.execute(refreshToken)
+            .let { ResponseEntity.ok(it) }
 
-    }
 
 }

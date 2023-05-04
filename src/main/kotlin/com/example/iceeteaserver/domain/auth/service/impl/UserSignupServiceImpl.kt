@@ -22,7 +22,7 @@ class UserSignupServiceImpl(
     @Transactional
     override fun execute(memberDto: MemberDto) {
         accountValidator.validate(ValidatorType.SIGNUP,memberDto)
-            .let {  accountConverter.toEntity(memberDto,passwordEncoder.encode(memberDto.password))}
-            .let {  memberRepository.save(it)}
+            .let {  accountConverter.toEntity(memberDto,passwordEncoder.encode(memberDto.password)) }
+            .let {  memberRepository.save(it) }
     }
 }

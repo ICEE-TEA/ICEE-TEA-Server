@@ -23,11 +23,11 @@ class EmailVerifyServiceImpl(
         emailAuth.updateAuthentication(true)
         emailAuthRepository.save(emailAuth)
     }
-    fun verifyAuthKey(emailAuth: EmailAuth, authKey: String){
-        if(!Objects.equals(emailAuth.randomValue,authKey)){
+
+    fun verifyAuthKey(emailAuth: EmailAuth, authKey: String) {
+        if(!Objects.equals(emailAuth.randomValue,authKey)) {
             throw MismatchAuthkeyException()
         }
     }
-
 
 }
