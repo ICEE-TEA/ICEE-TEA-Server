@@ -24,14 +24,12 @@ class EmailSendServiceImpl (
         val authKey = generateCertificationNumber(9999)
         sendEmail(emailSendRequest.email,authKey)
     }
-    fun sendEmail(email : String, authKey : String){
+    fun sendEmail(email : String, authKey : String) {
         val subject = "아이스티 맛있게 먹자~~"
         val content = "ICEE-TEA 인증번호는 " + authKey +"입니다"
         val emailAuth = emailAuthRepository.findById(email)
-            .orElse(
-                EmailAuth(email,authKey,false,0)
-            )
-        if(emailAuth.attemptCount >=5){
+            .orElse(EmailAuth(email,authKey,false,0))
+        if(emailAuth.attemptCount >=5) {
             throw ManyEmailRequestException()
         }
         emailAuth.updateRandomValue(authKey)
@@ -45,7 +43,7 @@ class EmailSendServiceImpl (
             helper.setSubject(subject)
             helper.setText(content)
             mailSender.send(mimeMailMessage)
-        }catch (e : MessagingException){
+        } catch (e : MessagingException) {
             throw EmailSendFailException()
         }
     }

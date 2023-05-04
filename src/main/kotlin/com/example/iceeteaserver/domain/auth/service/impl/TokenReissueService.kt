@@ -14,9 +14,8 @@ import org.springframework.transaction.annotation.Transactional
 
 
 @Service
-class TokenReissuanceService(
+class TokenReissueService(
     private val refreshTokenRepository: RefreshTokenRepository,
-    private val memberUtils: MemberUtils,
     private val jwtTokenUtil: JwtTokenUtil,
     private val jwtTokenProvider: JwtTokenProvider
 ) : TokenReissuance{
@@ -27,7 +26,7 @@ class TokenReissuanceService(
         refreshTokenRepository.findByIdOrNull(email)
             .let { it ?: throw ExpiredTokenException() }
             .let {
-                if (it.refreshToken!=refreshToken){
+                if (it.refreshToken!=refreshToken) {
                     throw InvalidTokenException()
                 }
             }

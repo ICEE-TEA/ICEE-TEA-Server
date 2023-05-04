@@ -35,13 +35,10 @@ open class SecurityConfig(
             // auth
             .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
             .antMatchers(HttpMethod.PATCH, "/auth/**").permitAll()
-            .antMatchers(HttpMethod.DELETE, "/auth/**").authenticated()
-            .antMatchers(HttpMethod.PATCH, "/auth/password/initialize").permitAll()
 
             // email
             .antMatchers(HttpMethod.POST,"/email/**").permitAll()
             .antMatchers(HttpMethod.GET,"/email/**").permitAll()
-
 
             // member
             .antMatchers(HttpMethod.GET, "/member/**").authenticated()

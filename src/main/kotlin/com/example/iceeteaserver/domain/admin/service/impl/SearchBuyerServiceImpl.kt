@@ -2,19 +2,23 @@ package com.example.iceeteaserver.domain.admin.service.impl
 
 import com.example.iceeteaserver.domain.admin.converter.PurchaseConverter
 import com.example.iceeteaserver.domain.admin.presentation.dto.response.GetBuyerListResponse
-import com.example.iceeteaserver.domain.admin.service.GetBuyerListService
+import com.example.iceeteaserver.domain.admin.service.SearchBuyerService
 import com.example.iceeteaserver.domain.purchase.repository.PurchaseRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 
 @Service
-class GetBuyerListServiceImpl(
+class SearchBuyerServiceImpl (
     private val purchaseRepository: PurchaseRepository,
     private val purchaseConverter: PurchaseConverter
-) : GetBuyerListService{
-    @Transactional(readOnly = true)
-    override fun execute(): List<GetBuyerListResponse> =
-        purchaseRepository.findAll()
-            .map { purchaseConverter.toPurchaseResponse(it) }
+) : SearchBuyerService {
+    @Transactional(rollbackFor = [Exception::class])
+    override fun execute(buyerName: String): List<GetBuyerListResponse> =
+        purchaseRepository.findByMemberName(buyerName)
+            .map {
+                println(buyerName)
+                purchaseConverter.toPurchaseResponse(it)
+            }
+
 }
