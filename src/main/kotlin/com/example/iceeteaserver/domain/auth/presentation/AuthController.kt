@@ -27,11 +27,11 @@ class AuthController(
 ) {
 
     @PostMapping("/signup")
-    fun signup(@RequestBody userSignupRequest: UserSignupRequest) : ResponseEntity<Void>{
+    fun signup(@RequestBody userSignupRequest: UserSignupRequest) : ResponseEntity<Void> =
         accountConverter.todo(userSignupRequest)
             .let { userSignupService.execute(it) }
-            .let { return ResponseEntity.status(HttpStatus.CREATED).build() }
-    }
+            .let { ResponseEntity.status(HttpStatus.CREATED).build() }
+
 
     @PostMapping("/signin")
     fun login(@RequestBody userLoginRequest: UserLoginRequest) : ResponseEntity<TokenResponse> =
@@ -43,6 +43,5 @@ class AuthController(
     fun reIssueToken(@RequestHeader("RefreshToken") refreshToken : String) : ResponseEntity<TokenResponse> =
         tokenReissueService.execute(refreshToken)
             .let { ResponseEntity.ok(it) }
-
 
 }

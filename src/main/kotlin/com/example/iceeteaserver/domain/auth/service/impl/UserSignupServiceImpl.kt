@@ -1,7 +1,6 @@
 package com.example.iceeteaserver.domain.auth.service.impl
 
 import com.example.iceeteaserver.domain.auth.presentation.dto.MemberDto
-import com.example.iceeteaserver.domain.auth.presentation.dto.type.ValidatorType
 import com.example.iceeteaserver.domain.auth.service.UserSignupService
 import com.example.iceeteaserver.domain.auth.util.AccountConverter
 import com.example.iceeteaserver.domain.auth.util.AccountValidator

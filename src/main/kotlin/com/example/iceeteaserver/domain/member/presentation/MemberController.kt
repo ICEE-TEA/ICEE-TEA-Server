@@ -15,9 +15,8 @@ class MemberController(
 ) {
 
     @GetMapping
-    fun getMyPurchase() : ResponseEntity<List<PurchaseResponse>>{
-        return getMyPurchaseListService.execute()
+    fun getMyPurchase() : ResponseEntity<List<PurchaseResponse>> =
+        getMyPurchaseListService.execute()
             .let { ResponseEntity.ok(it) }
-    }
 
 }

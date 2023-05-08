@@ -22,16 +22,15 @@ class EmailController (
     private val emailSendService: EmailSendService,
     private val emailVerifyService: EmailVerifyService
 ){
+
     @PostMapping("/send")
-    fun sendEmail(@RequestBody @Valid emailSendRequest: EmailSendRequest) : ResponseEntity<Void> {
+    fun sendEmail(@RequestBody @Valid emailSendRequest: EmailSendRequest) : ResponseEntity<Void> =
         emailSendService.execute(emailSendRequest)
-        return ResponseEntity.status(HttpStatus.OK).build()
-    }
+            .let {  ResponseEntity.status(HttpStatus.OK).build()}
 
     @GetMapping("/verify")
-    fun verifyEmail(@RequestParam email : String, @RequestParam authKey : String) : ResponseEntity<Void>{
+    fun verifyEmail(@RequestParam email : String, @RequestParam authKey : String) : ResponseEntity<Void> =
         emailVerifyService.execute(email,authKey)
-        return ResponseEntity.status(HttpStatus.OK).build()
-    }
+            .let { ResponseEntity.status(HttpStatus.OK).build() }
 
 }

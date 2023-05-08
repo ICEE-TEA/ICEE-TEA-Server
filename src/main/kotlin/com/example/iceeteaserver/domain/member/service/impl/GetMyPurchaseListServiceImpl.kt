@@ -18,9 +18,8 @@ class GetMyPurchaseListServiceImpl (
 ) : GetMyPurchaseListService{
 
     @Transactional(rollbackFor = [Exception::class])
-    override fun execute(): List<PurchaseResponse> {
-        val member = memberUtils.currentMember()
-        return purchaseRepository.findByMember(member)
+    override fun execute(): List<PurchaseResponse> =
+        purchaseRepository.findByMember(memberUtils.currentMember())
             .map { myPurchaseConverter.toMyPurchaseResponse(it) }
-    }
+
 }
