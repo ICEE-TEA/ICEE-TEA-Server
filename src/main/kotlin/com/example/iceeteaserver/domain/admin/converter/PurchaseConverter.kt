@@ -8,9 +8,14 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class PurchaseConverter(
-    private val memberConverter: MemberConverter
-) {
-    fun toPurchaseResponse(purchase: Purchase) =
-        GetBuyerListResponse(purchase.flavor,purchase.size,purchase.pay,memberConverter.toPurchaseResponse(purchase.member))
+class PurchaseConverter{
+    fun toPurchaseResponse(purchase: Purchase, member : MemberResponse): GetBuyerListResponse {
+        val getBuyerListResponse = GetBuyerListResponse(
+            purchase.flavor,
+            purchase.size,
+            purchase.pay,
+            member
+        )
+        return getBuyerListResponse
+    }
 }
