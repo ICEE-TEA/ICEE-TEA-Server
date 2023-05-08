@@ -16,10 +16,8 @@ class SearchBuyerServiceImpl (
     private val memberConverter: MemberConverter
 ) : SearchBuyerService {
     @Transactional(rollbackFor = [Exception::class])
-    override fun execute(buyerName: String): List<GetBuyerListResponse> {
+    override fun execute(buyerName: String): List<GetBuyerListResponse> =
         purchaseRepository.findByMemberName(buyerName)
             .map { purchaseConverter.toPurchaseResponse(it,memberConverter.toPurchaseResponse(it.member)) }
-            .let { return it }
-    }
 
 }
