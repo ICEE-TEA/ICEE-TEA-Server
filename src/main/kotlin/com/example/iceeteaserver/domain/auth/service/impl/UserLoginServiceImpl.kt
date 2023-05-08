@@ -15,8 +15,10 @@ class UserLoginServiceImpl(
     private val accountValidator: AccountValidator,
     private val jwtTokenUtil: JwtTokenUtil
 ) : UserLoginService{
-    @Transactional
+
+    @Transactional(rollbackFor = [Exception::class])
     override fun execute(memberDto: MemberDto): TokenResponse =
-        accountValidator.validate(ValidatorType.LOGIN,memberDto)
+        accountValidator.validateLogin(memberDto)
             .let { jwtTokenUtil.generateToken(memberDto.email) }
+
 }

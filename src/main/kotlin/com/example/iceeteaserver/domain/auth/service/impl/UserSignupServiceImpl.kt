@@ -9,6 +9,7 @@ import com.example.iceeteaserver.domain.member.repository.MemberRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.lang.Exception
 
 
 @Service
@@ -19,9 +20,9 @@ class UserSignupServiceImpl(
     private val passwordEncoder: PasswordEncoder
 ) : UserSignupService{
 
-    @Transactional
+    @Transactional(rollbackFor = [Exception::class])
     override fun execute(memberDto: MemberDto) {
-        accountValidator.validate(ValidatorType.SIGNUP,memberDto)
+        accountValidator.validateSignUp(memberDto)
             .let {  accountConverter.toEntity(memberDto,passwordEncoder.encode(memberDto.password)) }
             .let {  memberRepository.save(it) }
     }
