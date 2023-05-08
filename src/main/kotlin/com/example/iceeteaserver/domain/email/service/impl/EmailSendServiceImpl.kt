@@ -19,7 +19,7 @@ class EmailSendServiceImpl (
     private val emailAuthRepository: EmailAuthRepository
 ) : EmailSendService{
 
-    @Transactional
+    @Transactional(rollbackFor = [Exception::class])
     override fun execute(emailSendRequest: EmailSendRequest) {
         val authKey = generateCertificationNumber(9999)
         sendEmail(emailSendRequest.email,authKey)

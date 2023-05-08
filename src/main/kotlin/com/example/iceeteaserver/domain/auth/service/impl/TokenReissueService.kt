@@ -7,7 +7,6 @@ import com.example.iceeteaserver.domain.auth.util.JwtTokenUtil
 import com.example.iceeteaserver.global.security.exception.ExpiredTokenException
 import com.example.iceeteaserver.global.security.exception.InvalidTokenException
 import com.example.iceeteaserver.global.security.jwt.JwtTokenProvider
-import com.example.iceeteaserver.global.util.MemberUtils
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -20,7 +19,7 @@ class TokenReissueService(
     private val jwtTokenProvider: JwtTokenProvider
 ) : TokenReissuance{
 
-    @Transactional
+    @Transactional(rollbackFor = [Exception::class])
     override fun execute(refreshToken: String): TokenResponse {
         val email = jwtTokenProvider.exactEmailFromRefreshToken(refreshToken)
         refreshTokenRepository.findByIdOrNull(email)

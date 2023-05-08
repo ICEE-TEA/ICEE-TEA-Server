@@ -14,8 +14,10 @@ class PurchaseIceteaServiceImpl(
     private val purchaseRepository: PurchaseRepository,
     private val memberUtils: MemberUtils
 ) : PurchaseIceteaService{
+
     @Transactional(rollbackFor = [Exception::class])
     override fun execute(purchaseRequest : PurchaseRequest) {
         purchaseRepository.save(Purchase(purchaseRequest.flavor,purchaseRequest.size,purchaseRequest.pay,memberUtils.currentMember()))
     }
+
 }

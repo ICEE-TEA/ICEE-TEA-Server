@@ -2,7 +2,6 @@ package com.example.iceeteaserver.domain.auth.service.impl
 
 import com.example.iceeteaserver.domain.auth.presentation.dto.MemberDto
 import com.example.iceeteaserver.domain.auth.presentation.dto.response.TokenResponse
-import com.example.iceeteaserver.domain.auth.presentation.dto.type.ValidatorType
 import com.example.iceeteaserver.domain.auth.service.UserLoginService
 import com.example.iceeteaserver.domain.auth.util.AccountValidator
 import com.example.iceeteaserver.domain.auth.util.JwtTokenUtil
@@ -15,8 +14,10 @@ class UserLoginServiceImpl(
     private val accountValidator: AccountValidator,
     private val jwtTokenUtil: JwtTokenUtil
 ) : UserLoginService{
-    @Transactional
+
+    @Transactional(rollbackFor = [Exception::class])
     override fun execute(memberDto: MemberDto): TokenResponse =
-        accountValidator.validate(ValidatorType.LOGIN,memberDto)
+        accountValidator.validateLogin(memberDto)
             .let { jwtTokenUtil.generateToken(memberDto.email) }
+
 }

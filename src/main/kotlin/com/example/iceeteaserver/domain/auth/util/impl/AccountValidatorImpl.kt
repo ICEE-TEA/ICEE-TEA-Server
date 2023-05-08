@@ -20,7 +20,7 @@ class AccountValidatorImpl(
     private val passwordEncoder: PasswordEncoder,
 ) : AccountValidator {
 
-    private fun validateSignUp(memberDto: MemberDto) {
+    override fun validateSignUp(memberDto: MemberDto) {
         if(!emailAuthRepository.findById(memberDto.email).get().authentication) {
             throw NotVerifyEmailException()
         }
@@ -31,7 +31,8 @@ class AccountValidatorImpl(
             throw MismatchPasswordException()
         }
     }
-    private fun validateLogin(memberDto: MemberDto) {
+
+    override fun validateLogin(memberDto: MemberDto) {
         memberRepository.findByEmail(memberDto.email)
             .let { it ?: throw MemberNotFoundException() }
             .let {
@@ -44,10 +45,4 @@ class AccountValidatorImpl(
             }
     }
 
-    override fun validate(validatorType: ValidatorType, memberDto: MemberDto) {
-        when (validatorType) {
-            ValidatorType.SIGNUP -> validateSignUp(memberDto)
-            ValidatorType.LOGIN -> validateLogin(memberDto)
-        }
-    }
 }

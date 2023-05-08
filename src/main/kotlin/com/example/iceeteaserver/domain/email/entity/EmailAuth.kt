@@ -15,13 +15,13 @@ class EmailAuth(
     var attemptCount : Int
 ) {
 
-    fun updateAuthentication(authentication: Boolean){
+    fun updateAuthentication(authentication: Boolean) {
         this.authentication = authentication
     }
-    fun updateRandomValue(randomValue : String){
+    fun updateRandomValue(randomValue : String) {
         this.randomValue = randomValue
     }
-    fun increaseAttemptCount(){
+    fun increaseAttemptCount() {
         this.attemptCount+=1
     }
 }

@@ -27,5 +27,4 @@ class AdminController(
         searchBuyerService.execute(name)
             .let { ResponseEntity.ok(it) }
 
-
 }

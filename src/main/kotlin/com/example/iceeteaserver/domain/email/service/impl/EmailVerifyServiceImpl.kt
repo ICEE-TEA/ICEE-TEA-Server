@@ -15,7 +15,7 @@ class EmailVerifyServiceImpl(
     private val emailAuthRepository: EmailAuthRepository
 ) : EmailVerifyService{
 
-    @Transactional
+    @Transactional(rollbackFor = [Exception::class])
     override fun execute(email: String, authKey: String) {
         val emailAuth = emailAuthRepository.findById(email)
             .orElseThrow { EmailNotFoundException() }
@@ -25,7 +25,7 @@ class EmailVerifyServiceImpl(
     }
 
     fun verifyAuthKey(emailAuth: EmailAuth, authKey: String) {
-        if(!Objects.equals(emailAuth.randomValue,authKey)) {
+        if (!Objects.equals(emailAuth.randomValue,authKey)) {
             throw MismatchAuthkeyException()
         }
     }
