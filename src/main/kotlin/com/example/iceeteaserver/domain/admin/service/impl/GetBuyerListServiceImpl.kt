@@ -13,7 +13,7 @@ class GetBuyerListServiceImpl(
     private val purchaseRepository: PurchaseRepository,
     private val purchaseConverter: PurchaseConverter
 ) : GetBuyerListService{
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, rollbackFor = [Exception::class])
     override fun execute(): List<GetBuyerListResponse> =
         purchaseRepository.findAll()
             .map { purchaseConverter.toPurchaseResponse(it) }

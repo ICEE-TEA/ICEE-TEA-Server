@@ -20,7 +20,7 @@ class TokenReissueService(
     private val jwtTokenProvider: JwtTokenProvider
 ) : TokenReissuance{
 
-    @Transactional
+    @Transactional(rollbackFor = [Exception::class])
     override fun execute(refreshToken: String): TokenResponse {
         val email = jwtTokenProvider.exactEmailFromRefreshToken(refreshToken)
         refreshTokenRepository.findByIdOrNull(email)

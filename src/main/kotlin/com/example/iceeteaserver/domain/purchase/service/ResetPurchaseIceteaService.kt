@@ -1,5 +1,5 @@
 package com.example.iceeteaserver.domain.purchase.service
 
-interface DeletePurchaseIceteaService {
+interface ResetPurchaseIceteaService {
     fun execute()
 }

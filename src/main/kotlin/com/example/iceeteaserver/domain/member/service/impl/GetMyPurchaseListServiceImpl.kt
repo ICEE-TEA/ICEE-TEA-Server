@@ -17,7 +17,7 @@ class GetMyPurchaseListServiceImpl (
     private val memberUtils: MemberUtils
 ) : GetMyPurchaseListService{
 
-    @Transactional
+    @Transactional(rollbackFor = [Exception::class])
     override fun execute(): List<PurchaseResponse> {
         val member = memberUtils.currentMember()
         return purchaseRepository.findByMember(member)
