@@ -1,11 +1,16 @@
 package com.example.iceeteaserver.domain.member.entity
 
-import com.example.iceeteaserver.global.entity.BaseIdEntity
+import com.example.iceeteaserver.global.entity.BaseUUIDEntity
 import com.example.iceeteaserver.global.role.Role
+import java.util.*
 import javax.persistence.*
 
 @Entity
 class Member(
+
+    @Column(name = "member_idx")
+    override val idx: UUID,
+
     @Column(name = "email")
     val email : String,
 
@@ -16,7 +21,6 @@ class Member(
     val name : String,
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "Role")
-    val role: MutableList<Role>,
-) : BaseIdEntity()
+    val role: Role
+
+) : BaseUUIDEntity(idx)

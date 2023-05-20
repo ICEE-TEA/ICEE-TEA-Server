@@ -1,13 +1,16 @@
 package com.example.iceeteaserver.domain.purchase.entity
 
 import com.example.iceeteaserver.domain.member.entity.Member
-import com.example.iceeteaserver.global.entity.BaseIdEntity
+import com.example.iceeteaserver.global.entity.BaseUUIDEntity
+import java.util.*
 import javax.persistence.*
 
 
 @Entity
 class Purchase(
 
+    @Column(name = "purchase_id")
+    override val idx: UUID,
     @Column(name = "flavor")
     val flavor : String,
     @Column(name = "size")
@@ -17,4 +20,5 @@ class Purchase(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     val member: Member
-) : BaseIdEntity()
+
+) : BaseUUIDEntity(idx)

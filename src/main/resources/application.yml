@@ -39,5 +39,5 @@ jwt:
   accessSecret: ${ACCESS_SECRET}
   refreshSecret: ${REFRESH_SECRET}
   time:
-    accessTime: ${JWT_ACCESS_TIME}
-    refreshTime: ${JWT_REFRESH_TIME}
+    accessExp: ${JWT_ACCESS_TIME}
+    refreshExp: ${JWT_REFRESH_TIME}

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Component
 @Component
 class MemberConverter {
     fun toPurchaseResponse(member: Member) =
-        MemberResponse(member.id,member.name)
+        MemberResponse(member.idx,member.name)
 }

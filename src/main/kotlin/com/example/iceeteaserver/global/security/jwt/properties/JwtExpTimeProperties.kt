@@ -4,8 +4,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 
 @ConstructorBinding
-@ConfigurationProperties(prefix = "jwt.time")
-class TokenTimeProperties (
-    val accessTime: Long,
-    val refreshTime: Long
+@ConfigurationProperties("jwt.time")
+class JwtExpTimeProperties(
+    val accessExp: Long,
+    val refreshExp: Long
 )
