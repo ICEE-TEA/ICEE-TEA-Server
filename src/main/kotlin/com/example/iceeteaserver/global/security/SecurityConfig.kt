@@ -51,6 +51,9 @@ open class SecurityConfig(
             // admin
             .antMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ADMIN")
 
+            // health
+            .antMatchers(HttpMethod.GET,"/").permitAll()
+
             .anyRequest().denyAll()
             .and()
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
