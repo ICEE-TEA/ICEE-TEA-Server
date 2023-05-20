@@ -1,6 +1,7 @@
 package com.example.iceeteaserver.domain.email.presentation
 
 import com.example.iceeteaserver.domain.email.presentation.dto.request.EmailSendRequest
+import com.example.iceeteaserver.domain.email.presentation.dto.request.EmailVerifyRequest
 import com.example.iceeteaserver.domain.email.service.EmailSendService
 import com.example.iceeteaserver.domain.email.service.EmailVerifyService
 import org.springframework.http.HttpStatus
@@ -29,8 +30,8 @@ class EmailController (
             .let {  ResponseEntity.status(HttpStatus.OK).build()}
 
     @GetMapping("/verify")
-    fun verifyEmail(@RequestParam email : String, @RequestParam authKey : String) : ResponseEntity<Void> =
-        emailVerifyService.execute(email,authKey)
+    fun verifyEmail(@RequestBody @Valid emailVerifyRequest: EmailVerifyRequest) : ResponseEntity<Void> =
+        emailVerifyService.execute(emailVerifyRequest)
             .let { ResponseEntity.status(HttpStatus.OK).build() }
 
 }

@@ -3,6 +3,7 @@ package com.example.iceeteaserver.domain.email.service.impl
 import com.example.iceeteaserver.domain.email.entity.EmailAuth
 import com.example.iceeteaserver.domain.email.exception.EmailNotFoundException
 import com.example.iceeteaserver.domain.email.exception.MismatchAuthkeyException
+import com.example.iceeteaserver.domain.email.presentation.dto.request.EmailVerifyRequest
 import com.example.iceeteaserver.domain.email.repository.EmailAuthRepository
 import com.example.iceeteaserver.domain.email.service.EmailVerifyService
 import org.springframework.stereotype.Service
@@ -16,10 +17,10 @@ class EmailVerifyServiceImpl(
 ) : EmailVerifyService{
 
     @Transactional(rollbackFor = [Exception::class])
-    override fun execute(email: String, authKey: String) {
-        val emailAuth = emailAuthRepository.findById(email)
+    override fun execute(emailVerifyRequest: EmailVerifyRequest) {
+        val emailAuth = emailAuthRepository.findById(emailVerifyRequest.email)
             .orElseThrow { EmailNotFoundException() }
-        verifyAuthKey(emailAuth,authKey)
+        verifyAuthKey(emailAuth,emailVerifyRequest.authKey)
         emailAuth.updateAuthentication(true)
         emailAuthRepository.save(emailAuth)
     }
