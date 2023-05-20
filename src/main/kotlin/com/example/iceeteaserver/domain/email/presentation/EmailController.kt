@@ -29,7 +29,7 @@ class EmailController (
         emailSendService.execute(emailSendRequest)
             .let {  ResponseEntity.status(HttpStatus.OK).build()}
 
-    @GetMapping("/verify")
+    @PostMapping("/verify")
     fun verifyEmail(@RequestBody @Valid emailVerifyRequest: EmailVerifyRequest) : ResponseEntity<Void> =
         emailVerifyService.execute(emailVerifyRequest)
             .let { ResponseEntity.status(HttpStatus.OK).build() }
