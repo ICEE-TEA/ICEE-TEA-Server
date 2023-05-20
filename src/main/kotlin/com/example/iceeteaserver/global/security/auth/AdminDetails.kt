@@ -1,17 +1,20 @@
 package com.example.iceeteaserver.global.security.auth
 
-import com.example.iceeteaserver.domain.member.entity.Member
+import com.example.iceeteaserver.global.role.Role
 import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class AuthDetails(
-    private val member: Member
+class AdminDetails(
+    private val adminEmail: String
 ) : UserDetails {
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority>? = member.role
+
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority?> =
+        mutableListOf(SimpleGrantedAuthority(Role.ADMIN.name))
 
     override fun getPassword(): String? = null
 
-    override fun getUsername(): String = member.email
+    override fun getUsername(): String = adminEmail
 
     override fun isAccountNonExpired(): Boolean = true
 

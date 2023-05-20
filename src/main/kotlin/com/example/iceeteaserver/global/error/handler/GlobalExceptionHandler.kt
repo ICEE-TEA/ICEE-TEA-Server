@@ -21,7 +21,7 @@ class GlobalExceptionHandler {
         log.error(e.errorCode.message)
         log.error(request.requestURI)
         val errorCode: ErrorCode = e.errorCode
-        return ResponseEntity (
+        return ResponseEntity(
             ErrorResponse(status = errorCode.status, message = errorCode.message),
             HttpStatus.valueOf(errorCode.status)
         )

@@ -8,13 +8,15 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-@Transactional(readOnly = true)
-class AuthDetailsService(
+class AdminDetailsService(
     private val memberRepository: MemberRepository
 ): UserDetailsService {
 
+    @Transactional(readOnly = true, rollbackFor = [Exception::class])
     override fun loadUserByUsername(username: String): UserDetails {
-        val user = memberRepository.findByEmail(username) ?: throw MemberNotFoundException()
-        return AuthDetails(user)
+        val admin = memberRepository.findByEmail(username)
+            ?: throw MemberNotFoundException()
+        return AdminDetails(admin.email)
     }
+
 }
