@@ -1,6 +1,6 @@
 package com.example.iceeteaserver.domain.email.exception
 
 import com.example.iceeteaserver.global.error.ErrorCode
-import com.example.iceeteaserver.global.error.exceptions.BusinessException
+import com.example.iceeteaserver.global.error.exceptions.IceTeaException
 
-class MismatchAuthkeyException : BusinessException(ErrorCode.AUTHKEY_NOT_CORRECT)
+class MismatchAuthkeyException : IceTeaException(ErrorCode.AUTHKEY_NOT_CORRECT)
