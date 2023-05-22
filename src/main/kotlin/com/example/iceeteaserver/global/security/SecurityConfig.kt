@@ -52,7 +52,7 @@ open class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ADMIN")
 
             // health
-            .antMatchers(HttpMethod.GET,"/").permitAll()
+            .antMatchers(HttpMethod.GET,"/health/**").permitAll()
 
             .anyRequest().denyAll()
             .and()
