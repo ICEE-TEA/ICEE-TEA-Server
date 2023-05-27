@@ -8,17 +8,15 @@ import javax.persistence.*
 
 @Entity
 class Purchase(
-
     @Column(name = "purchase_id")
     override val idx: UUID,
     @Column(name = "flavor")
-    val flavor : String,
+    val flavor: String,
     @Column(name = "size")
-    val size : Long,
+    val size: Long,
     @Column(name = "pay")
-    val pay : String,
+    val pay: String,
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     val member: Member
-
 ) : BaseUUIDEntity(idx)

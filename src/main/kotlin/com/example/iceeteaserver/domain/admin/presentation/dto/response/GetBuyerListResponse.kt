@@ -6,8 +6,8 @@ import lombok.Builder
 
 @Builder
 data class GetBuyerListResponse(
-    val flavor : String,
-    val size : Long,
-    val pay : String,
-    val member : MemberResponse
+    val flavor: String,
+    val size: Long,
+    val pay: String,
+    val member: MemberResponse
 )

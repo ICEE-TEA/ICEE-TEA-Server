@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RestController
 class MemberController(
     private val getMyPurchaseListService: GetMyPurchaseListService
 ) {
-
     @GetMapping
-    fun getMyPurchase() : ResponseEntity<List<PurchaseResponse>> =
+    fun getMyPurchase(): ResponseEntity<List<PurchaseResponse>> =
         getMyPurchaseListService.execute()
             .let { ResponseEntity.ok(it) }
 

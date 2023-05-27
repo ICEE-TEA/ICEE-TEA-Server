@@ -14,11 +14,19 @@ import java.util.*
 class PurchaseIceteaServiceImpl(
     private val purchaseRepository: PurchaseRepository,
     private val memberUtil: MemberUtil
-) : PurchaseIceteaService{
+) : PurchaseIceteaService {
 
     @Transactional(rollbackFor = [Exception::class])
-    override fun execute(purchaseRequest : PurchaseRequest) {
-        purchaseRepository.save(Purchase(UUID.randomUUID(),purchaseRequest.flavor,purchaseRequest.size,purchaseRequest.pay, memberUtil.currentMember()))
+    override fun execute(purchaseRequest: PurchaseRequest) {
+        purchaseRepository.save(
+            Purchase(
+                UUID.randomUUID(),
+                purchaseRequest.flavor,
+                purchaseRequest.size,
+                purchaseRequest.pay,
+                memberUtil.currentMember()
+            )
+        )
     }
 
 }

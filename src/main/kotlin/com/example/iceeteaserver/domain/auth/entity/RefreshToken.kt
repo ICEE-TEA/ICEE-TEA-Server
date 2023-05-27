@@ -8,13 +8,10 @@ import javax.persistence.Column
 
 @RedisHash(value = "refreshToken", timeToLive = 60L * 60 * 24 * 7)
 class RefreshToken(
-
     @Id
-    val email : String,
+    val email: String,
     @Column(name = "refreshToken")
-    val refreshToken : String,
+    val refreshToken: String,
     @TimeToLive(unit = TimeUnit.SECONDS)
     val expiredTime: Long
-
-
 )

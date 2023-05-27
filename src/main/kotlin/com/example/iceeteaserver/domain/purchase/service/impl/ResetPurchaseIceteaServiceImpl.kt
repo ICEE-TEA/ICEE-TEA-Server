@@ -4,7 +4,6 @@ import com.example.iceeteaserver.domain.purchase.repository.PurchaseRepository
 import com.example.iceeteaserver.domain.purchase.service.ResetPurchaseIceteaService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.lang.Exception
 
 @Service
 class ResetPurchaseIceteaServiceImpl(

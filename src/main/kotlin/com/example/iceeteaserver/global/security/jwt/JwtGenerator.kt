@@ -48,10 +48,8 @@ class JwtGenerator(
             .setExpiration(Date(System.currentTimeMillis() + jwtExpTimeProperties.refreshExp * 1000))
             .compact()
 
-        refreshTokenRepository.save(RefreshToken(email,refreshToken,jwtExpTimeProperties.refreshExp))
+        refreshTokenRepository.save(RefreshToken(email, refreshToken, jwtExpTimeProperties.refreshExp))
         return refreshToken
-
     }
-
 
 }

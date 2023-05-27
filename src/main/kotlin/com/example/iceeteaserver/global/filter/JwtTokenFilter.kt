@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServletResponse
 @Component
 class JwtRequestFilter(
     private val jwtParser: JwtParser
-): OncePerRequestFilter() {
+) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-
         val accessToken = jwtParser.parseAccessToken(request)
 
         if (!accessToken.isNullOrBlank()) {
@@ -29,7 +28,6 @@ class JwtRequestFilter(
         }
 
         filterChain.doFilter(request, response)
-
     }
 
 }

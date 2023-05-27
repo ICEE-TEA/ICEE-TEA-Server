@@ -10,12 +10,19 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class AccountConvertImpl : AccountConverter{
+class AccountConvertImpl : AccountConverter {
     override fun todo(userSignupRequest: UserSignupRequest): MemberDto =
-        MemberDto(UUID.randomUUID(),userSignupRequest.email,userSignupRequest.password,userSignupRequest.passwordCheck,userSignupRequest.name,Role.MEMBER)
+        MemberDto(
+            UUID.randomUUID(),
+            userSignupRequest.email,
+            userSignupRequest.password,
+            userSignupRequest.passwordCheck,
+            userSignupRequest.name,
+            Role.MEMBER
+        )
 
     override fun todo(userLoginRequest: UserSignInRequest): MemberDto =
-        MemberDto(UUID.randomUUID(),userLoginRequest.email,userLoginRequest.password,"","", Role.MEMBER)
+        MemberDto(UUID.randomUUID(), userLoginRequest.email, userLoginRequest.password, "", "", Role.MEMBER)
 
     override fun toEntity(userSignupRequest: UserSignupRequest, encodePassword: String): Member =
         Member(
@@ -25,4 +32,5 @@ class AccountConvertImpl : AccountConverter{
             name = userSignupRequest.name,
             role = Role.MEMBER
         )
+
 }

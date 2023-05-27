@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class AdminDetailsService(
     private val memberRepository: MemberRepository
-): UserDetailsService {
+) : UserDetailsService {
 
     @Transactional(readOnly = true, rollbackFor = [Exception::class])
     override fun loadUserByUsername(username: String): UserDetails {

@@ -18,12 +18,12 @@ class AdminController(
 ) {
 
     @GetMapping
-    fun getBuyer() : ResponseEntity<List<GetBuyerListResponse>> =
+    fun getBuyer(): ResponseEntity<List<GetBuyerListResponse>> =
         getBuyerListService.execute()
             .let { ResponseEntity.ok(it) }
 
     @GetMapping("/search")
-    fun searchBuyer(@RequestParam name : String) : ResponseEntity<List<GetBuyerListResponse>> =
+    fun searchBuyer(@RequestParam name: String): ResponseEntity<List<GetBuyerListResponse>> =
         searchBuyerService.execute(name)
             .let { ResponseEntity.ok(it) }
 
