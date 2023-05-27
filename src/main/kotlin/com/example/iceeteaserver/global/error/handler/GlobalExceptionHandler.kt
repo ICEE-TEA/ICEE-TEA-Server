@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletRequest
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
-
     private val log = LoggerFactory.getLogger(this.javaClass.simpleName)
-
-
+    
     @ExceptionHandler(IceTeaException::class)
     fun globalExceptionHandler(request: HttpServletRequest, e: IceTeaException): ResponseEntity<ErrorResponse> {
         log.error(e.errorCode.message)
@@ -26,4 +24,5 @@ class GlobalExceptionHandler {
             HttpStatus.valueOf(errorCode.status)
         )
     }
+
 }

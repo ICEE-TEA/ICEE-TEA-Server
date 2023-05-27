@@ -13,11 +13,11 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/purchase")
-class PurchaseController (
+class PurchaseController(
     private val purchaseIceteaService: PurchaseIceteaService
-){
+) {
     @PostMapping
-    fun purchaseTea(@RequestBody @Valid purchaseRequest: PurchaseRequest) : ResponseEntity<Void> =
+    fun purchaseTea(@RequestBody @Valid purchaseRequest: PurchaseRequest): ResponseEntity<Void> =
         purchaseIceteaService.execute(purchaseRequest)
             .let { ResponseEntity.status(HttpStatus.CREATED).build() }
 

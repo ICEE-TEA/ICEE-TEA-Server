@@ -20,7 +20,8 @@ import java.lang.Exception
 class UserSignupServiceImpl(
     private val memberRepository: MemberRepository,
     private val accountConverter: AccountConverter,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
+    private val emailAuthRepository: EmailAuthRepository
 ) : UserSignupService{
 
     @Transactional(rollbackFor = [Exception::class])
@@ -37,10 +38,10 @@ class UserSignupServiceImpl(
         if (userSignupRequest.password!=(userSignupRequest.passwordCheck)){
             throw MismatchPasswordException()
         }
-//        val emailAuth = emailAuthRepository.findByIdOrNull(email) ?: throw NotVerifyEmailException()
-//
-//        if(!emailAuth.authentication) {
-//            throw NotVerifyEmailException()
-//        }
+        val emailAuth = emailAuthRepository.findByIdOrNull(userSignupRequest.email) ?: throw NotVerifyEmailException()
+
+        if(!emailAuth.authentication) {
+            throw NotVerifyEmailException()
+        }
     }
 }

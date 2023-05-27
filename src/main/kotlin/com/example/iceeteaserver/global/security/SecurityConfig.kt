@@ -14,12 +14,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-open class SecurityConfig(
+class SecurityConfig(
     private val jwtRequestFilter: JwtRequestFilter
 ) {
 
     @Bean
-    protected open fun filterChain(http: HttpSecurity): SecurityFilterChain =
+    protected fun filterChain(http: HttpSecurity): SecurityFilterChain =
         http
             .cors()
             .and()
@@ -37,14 +37,14 @@ open class SecurityConfig(
             .antMatchers(HttpMethod.PATCH, "/auth/**").permitAll()
 
             // email
-            .antMatchers(HttpMethod.POST,"/email/**").permitAll()
-            .antMatchers(HttpMethod.GET,"/email/**").permitAll()
+            .antMatchers(HttpMethod.POST, "/email/**").permitAll()
+            .antMatchers(HttpMethod.GET, "/email/**").permitAll()
 
             // member
             .antMatchers(HttpMethod.GET, "/member/**").authenticated()
 
             // purchase
-            .antMatchers(HttpMethod.POST,"/purchase/**").authenticated()
+            .antMatchers(HttpMethod.POST, "/purchase/**").authenticated()
             .antMatchers(HttpMethod.GET, "/purchase/**").authenticated()
             .antMatchers(HttpMethod.DELETE, "/purchase/**").authenticated()
 
@@ -52,7 +52,7 @@ open class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ADMIN")
 
             // health
-            .antMatchers(HttpMethod.GET,"/health/**").permitAll()
+            .antMatchers(HttpMethod.GET, "/health/**").permitAll()
 
             .anyRequest().denyAll()
             .and()
@@ -60,5 +60,5 @@ open class SecurityConfig(
             .build()
 
     @Bean
-    open fun passwordEncoder(): PasswordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
+    fun passwordEncoder(): PasswordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
 }

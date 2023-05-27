@@ -5,9 +5,9 @@ import javax.validation.constraints.NotNull
 
 data class PurchaseRequest(
     @field:NotBlank
-    val flavor : String,
+    val flavor: String,
     @field:NotNull
-    val size : Long,
+    val size: Long,
     @field:NotBlank
-    val pay : String
+    val pay: String
 )

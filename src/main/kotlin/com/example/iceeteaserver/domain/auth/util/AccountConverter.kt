@@ -6,8 +6,7 @@ import com.example.iceeteaserver.domain.auth.presentation.dto.request.UserSignup
 import com.example.iceeteaserver.domain.member.entity.Member
 
 interface AccountConverter {
-    fun todo(userSignupRequest: UserSignupRequest) : MemberDto
-    fun todo(userLoginRequest: UserSignInRequest) : MemberDto
-
-    fun toEntity(userSignupRequest: UserSignupRequest, encodePassword : String) : Member
+    fun todo(userSignupRequest: UserSignupRequest): MemberDto
+    fun todo(userLoginRequest: UserSignInRequest): MemberDto
+    fun toEntity(userSignupRequest: UserSignupRequest, encodePassword: String): Member
 }

@@ -17,12 +17,11 @@ class UserSignInServiceImpl(
     private val memberRepository: MemberRepository,
     private val passwordEncoder: PasswordEncoder,
     private val jwtGenerator: JwtGenerator
-) : UserSignInService{
-
+) : UserSignInService {
     @Transactional(rollbackFor = [Exception::class])
     override fun execute(memberDto: MemberDto): TokenResponse =
         validateLogin(memberDto)
-            .let { jwtGenerator.generateToken(memberDto.email,memberDto.role) }
+            .let { jwtGenerator.generateToken(memberDto.email, memberDto.role) }
 
     private fun validateLogin(memberDto: MemberDto) {
         memberRepository.findByEmail(memberDto.email)

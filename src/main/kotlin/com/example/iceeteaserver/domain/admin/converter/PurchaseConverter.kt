@@ -6,8 +6,8 @@ import com.example.iceeteaserver.domain.purchase.entity.Purchase
 import org.springframework.stereotype.Component
 
 @Component
-class PurchaseConverter{
-    fun toPurchaseResponse(purchase: Purchase, member : MemberResponse): GetBuyerListResponse {
+class PurchaseConverter {
+    fun toPurchaseResponse(purchase: Purchase, member: MemberResponse): GetBuyerListResponse {
         val getBuyerListResponse = GetBuyerListResponse(
             purchase.flavor,
             purchase.size,

@@ -10,12 +10,11 @@ import org.springframework.transaction.annotation.Transactional
 
 
 @Service
-class GetMyPurchaseListServiceImpl (
+class GetMyPurchaseListServiceImpl(
     private val purchaseRepository: PurchaseRepository,
     private val myPurchaseConverter: MyPurchaseConverter,
     private val memberUtil: MemberUtil
-) : GetMyPurchaseListService{
-
+) : GetMyPurchaseListService {
     @Transactional(rollbackFor = [Exception::class])
     override fun execute(): List<PurchaseResponse> =
         purchaseRepository.findByMember(memberUtil.currentMember())

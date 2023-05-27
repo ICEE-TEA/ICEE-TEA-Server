@@ -9,7 +9,7 @@ class PurchaseSchedule(
     private val resetPurchaseIceteaService: ResetPurchaseIceteaService
 ) {
     @Scheduled(cron = "0 0 0 ? * MON-FRI", zone = "Asia/Seoul")
-    fun weekdayPurchaseStatusReset(){
+    fun weekdayPurchaseStatusReset() {
         resetPurchaseIceteaService.execute()
     }
 

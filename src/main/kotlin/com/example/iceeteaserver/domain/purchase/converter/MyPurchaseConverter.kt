@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component
 @Component
 class MyPurchaseConverter {
     fun toMyPurchaseResponse(purchase: Purchase) =
-        PurchaseResponse(purchase.flavor,purchase.size,purchase.pay)
+        PurchaseResponse(purchase.flavor, purchase.size, purchase.pay)
 
 }
