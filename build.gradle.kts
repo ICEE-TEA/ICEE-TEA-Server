@@ -35,6 +35,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.mariadb.jdbc:mariadb-java-client:3.1.2")
 
     runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
