@@ -1,27 +1,17 @@
 package com.example.iceeteaserver.global.config
 
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.HttpMethod
 import org.springframework.web.servlet.config.annotation.CorsRegistry
-import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
-@EnableWebMvc
-class WebConfig : WebMvcConfigurer {
+class WebConfig() : WebMvcConfigurer {
+
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
-            .allowCredentials(true)
-            .allowedHeaders("*")
             .allowedOrigins("*")
-            .allowedMethods(
-                HttpMethod.GET.name,
-                HttpMethod.HEAD.name,
-                HttpMethod.POST.name,
-                HttpMethod.PUT.name,
-                HttpMethod.DELETE.name,
-                HttpMethod.PATCH.name
-            )
-            .maxAge(3000)
+            .allowedHeaders("*")
+            .allowedMethods("GET", "POST", "PATCH", "DELETE", "PUT")
     }
+
 }
