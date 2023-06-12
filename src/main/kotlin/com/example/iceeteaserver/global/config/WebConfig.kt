@@ -13,7 +13,7 @@ class WebConfig : WebMvcConfigurer {
         registry.addMapping("/**")
             .allowCredentials(true)
             .allowedHeaders("*")
-            .allowedOrigins("http://localhost:3000")
+            .allowedOrigins("*")
             .allowedMethods(
                 HttpMethod.GET.name,
                 HttpMethod.HEAD.name,
