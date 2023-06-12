@@ -12,7 +12,7 @@ class WebConfig : WebMvcConfigurer {
         registry.addMapping("/**")
             .allowCredentials(true)
             .allowedHeaders("*")
-            .allowedOrigins("http://localhost:3003")
+            .allowedOrigins("http://localhost:3000")
             .allowedMethods("*")
             .maxAge(3000)
     }
