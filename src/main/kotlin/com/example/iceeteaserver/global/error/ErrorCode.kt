@@ -24,6 +24,9 @@ enum class ErrorCode(
     PASSWORD_NOT_CORRECT("비밀번호가 일치하지 않습니다",400),
 
 
+    // PURCHASE
+    NOT_EXIST_FLAVOR("존재하지 않는 맛입니다.",404),
+
     // APPLICATION
     ALREADY_APPLY_APPLICATION("이미 신청하셨습니다",400),
     NOT_APPLY_APPLICATION("신청하지 않았습니다.",400);
