@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class PurchaseConverter {
+
     fun toPurchaseResponse(purchase: Purchase, member: MemberResponse): GetBuyerListResponse {
         val getBuyerListResponse = GetBuyerListResponse(
             purchase.flavor,
@@ -16,4 +17,5 @@ class PurchaseConverter {
         )
         return getBuyerListResponse
     }
+
 }
