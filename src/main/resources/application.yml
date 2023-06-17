@@ -43,3 +43,7 @@ jwt:
   time:
     accessExp: ${JWT_ACCESS_TIME}
     refreshExp: ${JWT_REFRESH_TIME}
+
+org:
+  gradle:
+    daemon: true
