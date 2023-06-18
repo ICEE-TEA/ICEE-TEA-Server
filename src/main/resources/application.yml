@@ -36,7 +36,6 @@ spring:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
 
-
 jwt:
   accessSecret: ${ACCESS_SECRET}
   refreshSecret: ${REFRESH_SECRET}
@@ -44,6 +43,3 @@ jwt:
     accessExp: ${JWT_ACCESS_TIME}
     refreshExp: ${JWT_REFRESH_TIME}
 
-org:
-  gradle:
-    daemon: true
