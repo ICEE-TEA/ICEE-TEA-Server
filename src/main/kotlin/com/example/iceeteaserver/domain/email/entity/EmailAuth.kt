@@ -8,20 +8,22 @@ import org.springframework.data.redis.core.RedisHash
 class EmailAuth(
 
     @Id
-    val email : String,
-    var randomValue : String,
-    var authentication : Boolean,
+    val email: String,
+    var randomValue: String,
+    var authentication: Boolean,
     @ColumnDefault("1")
-    var attemptCount : Int
+    var attemptCount: Int
 ) {
 
     fun updateAuthentication(authentication: Boolean) {
         this.authentication = authentication
     }
-    fun updateRandomValue(randomValue : String) {
+
+    fun updateRandomValue(randomValue: String) {
         this.randomValue = randomValue
     }
+
     fun increaseAttemptCount() {
-        this.attemptCount+=1
+        this.attemptCount += 1
     }
 }

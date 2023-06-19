@@ -4,6 +4,6 @@ import com.example.iceeteaserver.domain.purchase.presentation.dto.request.Purcha
 
 interface PurchaseIceteaService {
 
-    fun execute(purchaseRequest : PurchaseRequest)
+    fun execute(purchaseRequest: PurchaseRequest)
 
 }

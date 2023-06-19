@@ -12,21 +12,21 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import javax.mail.MessagingException
 
-
 @Service
-class EmailSendServiceImpl (
+class EmailSendServiceImpl(
     private val mailSender: JavaMailSender,
     private val emailAuthRepository: EmailAuthRepository
-) : EmailSendService{
+) : EmailSendService {
 
     @Transactional(rollbackFor = [Exception::class])
     override fun execute(emailSendRequest: EmailSendRequest) {
         val authKey = generateCertificationNumber(9999)
-        sendEmail(emailSendRequest.email,authKey)
+        sendEmail(emailSendRequest.email, authKey)
     }
-    fun sendEmail(email : String, authKey : String) {
+
+    fun sendEmail(email: String, authKey: String) {
         val subject = "아이스티 맛있게 먹자~~"
-        val content = "ICEE-TEA 인증번호는 " + authKey +"입니다"
+        val content = "ICEE-TEA 인증번호는 " + authKey + "입니다"
         val emailAuth = emailAuthRepository.findById(email)
             .orElse(EmailAuth(email,authKey,false,0))
         if(emailAuth.attemptCount >=5) {
