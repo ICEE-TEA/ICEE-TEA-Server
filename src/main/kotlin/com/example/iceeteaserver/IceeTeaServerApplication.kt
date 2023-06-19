@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableConfigurationProperties
 @EnableScheduling
 class IceeTeaServerApplication
-
 fun main(args: Array<String>) {
     runApplication<IceeTeaServerApplication>(*args)
 }
