@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.9"
+    id("org.springframework.boot") version "2.7.5"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
@@ -33,7 +33,7 @@ dependencies {
     /* DB */
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
-    runtimeOnly("com.mysql:mysql-connector-j")
+    implementation("mysql:mysql-connector-java:8.0.33")
 
     /* spring app */
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -41,7 +41,7 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     /* mail */
-    implementation("org.springframework.boot:spring-boot-starter-mail:2.7.5")
+    implementation("org.springframework.boot:spring-boot-starter-mail")
 
     /* kotlin */
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -68,3 +68,4 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
