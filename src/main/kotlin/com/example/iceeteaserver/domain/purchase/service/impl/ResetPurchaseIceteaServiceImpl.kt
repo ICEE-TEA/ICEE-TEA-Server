@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class ResetPurchaseIceteaServiceImpl(
     private val purchaseRepository: PurchaseRepository
-) : ResetPurchaseIceteaService{
+) : ResetPurchaseIceteaService {
 
     @Transactional(rollbackFor = [Exception::class])
     override fun execute() {

@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank
 data class EmailVerifyRequest(
     @field:NotBlank
     @field:Email
-    val email : String,
+    val email: String,
     @field:NotBlank
-    val authKey : String
+    val authKey: String
 )

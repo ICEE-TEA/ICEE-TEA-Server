@@ -8,25 +8,25 @@ import com.example.iceeteaserver.domain.email.repository.EmailAuthRepository
 import com.example.iceeteaserver.domain.email.service.EmailVerifyService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.Objects
+import java.util.*
 
 
 @Service
 class EmailVerifyServiceImpl(
     private val emailAuthRepository: EmailAuthRepository
-) : EmailVerifyService{
+) : EmailVerifyService {
 
     @Transactional(rollbackFor = [Exception::class])
     override fun execute(emailVerifyRequest: EmailVerifyRequest) {
         val emailAuth = emailAuthRepository.findById(emailVerifyRequest.email)
             .orElseThrow { EmailNotFoundException() }
-        verifyAuthKey(emailAuth,emailVerifyRequest.authKey)
+        verifyAuthKey(emailAuth, emailVerifyRequest.authKey)
         emailAuth.updateAuthentication(true)
         emailAuthRepository.save(emailAuth)
     }
 
     fun verifyAuthKey(emailAuth: EmailAuth, authKey: String) {
-        if (!Objects.equals(emailAuth.randomValue,authKey)) {
+        if (!Objects.equals(emailAuth.randomValue, authKey)) {
             throw MismatchAuthkeyException()
         }
     }

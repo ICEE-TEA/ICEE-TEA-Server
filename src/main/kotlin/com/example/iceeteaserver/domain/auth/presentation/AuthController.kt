@@ -21,18 +21,18 @@ class AuthController(
     private val accountConverter: AccountConverter
 ) {
     @PostMapping("/signup")
-    fun signup(@RequestBody userSignupRequest: UserSignupRequest) : ResponseEntity<Void> =
-            userSignupService.execute(userSignupRequest)
+    fun signup(@RequestBody userSignupRequest: UserSignupRequest): ResponseEntity<Void> =
+        userSignupService.execute(userSignupRequest)
             .let { ResponseEntity.status(HttpStatus.CREATED).build() }
 
     @PostMapping("/signin")
-    fun login(@RequestBody userLoginRequest: UserSignInRequest) : ResponseEntity<TokenResponse> =
+    fun login(@RequestBody userLoginRequest: UserSignInRequest): ResponseEntity<TokenResponse> =
         accountConverter.todo(userLoginRequest)
             .let { userLoginService.execute(it) }
             .let { ResponseEntity.ok(it) }
 
     @PatchMapping
-    fun reIssueToken(@RequestHeader("RefreshToken") refreshToken : String) : ResponseEntity<TokenResponse> =
+    fun reIssueToken(@RequestHeader("RefreshToken") refreshToken: String): ResponseEntity<TokenResponse> =
         tokenReissueService.execute(refreshToken)
             .let { ResponseEntity.ok(it) }
 
