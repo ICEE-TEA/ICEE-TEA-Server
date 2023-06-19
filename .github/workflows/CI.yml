@@ -24,8 +24,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build --no-daemon
 
-#      - name: Test with Gradle
-#        run: ./gradlew build -x test
+      - name: Test with Gradle
+        run: ./gradlew build -x test
 
       - name: ICEE-TEA Backend CI success Discord Notification
         uses: sarisia/actions-status-discord@v1
