@@ -1,4 +1,4 @@
-name: CI
+name: Spring Boot & Gradle CI/CD
 
 on:
   push:
@@ -6,8 +6,12 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +26,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean build
+        run : ./gradlew clean build --no-daemon
 
       - name: ICEE-TEA Backend CI success Discord Notification
         uses: sarisia/actions-status-discord@v1
