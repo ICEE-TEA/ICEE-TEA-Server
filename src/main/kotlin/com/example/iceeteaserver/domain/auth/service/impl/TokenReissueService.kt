@@ -24,8 +24,7 @@ class TokenReissueService(
     @Transactional(rollbackFor = [Exception::class])
     override fun execute(refreshToken: String): TokenResponse {
         val parsedRefreshToken = jwtParser.parseRefreshToken(refreshToken) ?: throw InvalidTokenException()
-        val refreshTokenDomain =
-            refreshTokenRepository.findByIdOrNull(parsedRefreshToken) ?: throw ExpiredTokenException()
+        val refreshTokenDomain = refreshTokenRepository.findByIdOrNull(parsedRefreshToken) ?: throw ExpiredTokenException()
         val member = memberRepository.findByEmail(refreshTokenDomain.email) ?: throw AccountNotFoundException()
 
         return jwtGenerator.generateToken(member.email, member.role)
