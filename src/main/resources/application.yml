@@ -24,6 +24,7 @@ spring:
         smtp:
           starttls:
             enable: 'true'
+            required: 'true'
           auth: 'true'
     host: ${EMAIL_HOST}
     username: ${EMAIL_NAME}
