@@ -8,7 +8,6 @@ import com.example.iceeteaserver.domain.purchase.repository.PurchaseRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-
 @Service
 class SearchBuyerServiceImpl (
     private val purchaseRepository: PurchaseRepository,

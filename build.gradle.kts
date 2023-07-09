@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.6"
+    id("org.springframework.boot") version "2.7.9"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
@@ -33,7 +33,7 @@ dependencies {
     /* DB */
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
-    implementation("mysql:mysql-connector-java:8.0.33")
+    implementation("org.mariadb:r2dbc-mariadb:1.1.3")
 
     /* spring app */
     implementation("org.springframework.boot:spring-boot-starter-validation")

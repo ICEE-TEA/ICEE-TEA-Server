@@ -5,7 +5,6 @@ import com.example.iceeteaserver.global.entity.BaseUUIDEntity
 import java.util.*
 import javax.persistence.*
 
-
 @Entity
 class Purchase(
     @Column(name = "purchase_id")

@@ -14,8 +14,7 @@ class AdminDetailsService(
 
     @Transactional(readOnly = true, rollbackFor = [Exception::class])
     override fun loadUserByUsername(username: String): UserDetails {
-        val admin = memberRepository.findByEmail(username)
-            ?: throw MemberNotFoundException()
+        val admin = memberRepository.findByEmail(username) ?: throw MemberNotFoundException()
         return AdminDetails(admin.email)
     }
 

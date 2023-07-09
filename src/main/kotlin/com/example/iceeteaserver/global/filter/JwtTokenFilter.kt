@@ -2,14 +2,11 @@ package com.example.iceeteaserver.global.filter
 
 import com.example.iceeteaserver.global.security.jwt.JwtParser
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-
-@Component
 class JwtRequestFilter(
     private val jwtParser: JwtParser
 ) : OncePerRequestFilter() {
