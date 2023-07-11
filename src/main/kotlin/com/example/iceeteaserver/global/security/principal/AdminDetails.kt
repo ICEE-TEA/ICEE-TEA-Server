@@ -1,4 +1,4 @@
-package com.example.iceeteaserver.global.security.auth
+package com.example.iceeteaserver.global.security.principal
 
 import com.example.iceeteaserver.global.role.Role
 import org.springframework.security.core.GrantedAuthority

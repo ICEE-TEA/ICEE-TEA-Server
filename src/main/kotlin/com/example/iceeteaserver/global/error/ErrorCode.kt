@@ -5,7 +5,7 @@ enum class ErrorCode(
     val status : Int
 ) {
     // TOKEN
-    EXPIRATION_TOKEN("토큰이 만료됬습니다",403),
+    EXPIRATION_TOKEN("토큰이 만료되었습니다",403),
     INVALID_TOKEN("토큰이 유효하지 않습니다",403),
 
     // MEMBER
