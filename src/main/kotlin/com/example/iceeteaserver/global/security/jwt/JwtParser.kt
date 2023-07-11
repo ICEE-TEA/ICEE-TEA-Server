@@ -1,8 +1,8 @@
 package com.example.iceeteaserver.global.security.jwt
 
 import com.example.iceeteaserver.global.role.Role
-import com.example.iceeteaserver.global.security.auth.AdminDetailsService
-import com.example.iceeteaserver.global.security.auth.MemberDetailsService
+import com.example.iceeteaserver.global.security.principal.AdminDetailsService
+import com.example.iceeteaserver.global.security.principal.MemberDetailsService
 import com.example.iceeteaserver.global.security.exception.InvalidTokenException
 import com.example.iceeteaserver.global.security.jwt.properties.JwtProperties
 import io.jsonwebtoken.Claims
@@ -19,7 +19,6 @@ class JwtParser(
     private val jwtProperties: JwtProperties,
     private val memberDetailsService: MemberDetailsService,
     private val adminDetailsService: AdminDetailsService
-
 ) {
 
     fun parseAccessToken(request: HttpServletRequest): String? =
@@ -50,6 +49,5 @@ class JwtParser(
             Role.ADMIN.name -> adminDetailsService.loadUserByUsername(body.subject)
             else -> throw InvalidTokenException()
         }
-
 
 }

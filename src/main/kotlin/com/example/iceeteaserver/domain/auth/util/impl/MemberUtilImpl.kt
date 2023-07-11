@@ -4,7 +4,7 @@ import com.example.iceeteaserver.domain.auth.util.MemberUtil
 import com.example.iceeteaserver.domain.member.entity.Member
 import com.example.iceeteaserver.domain.member.exception.MemberNotFoundException
 import com.example.iceeteaserver.domain.member.repository.MemberRepository
-import com.example.iceeteaserver.global.security.auth.MemberDetails
+import com.example.iceeteaserver.global.security.principal.MemberDetails
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component

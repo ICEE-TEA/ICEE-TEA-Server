@@ -1,4 +1,4 @@
-package com.example.iceeteaserver.global.security.auth
+package com.example.iceeteaserver.global.security.principal
 
 import com.example.iceeteaserver.domain.member.exception.MemberNotFoundException
 import com.example.iceeteaserver.domain.member.repository.MemberRepository
