@@ -1,6 +1,9 @@
 package com.example.iceeteaserver.global.security
 
-import com.example.iceeteaserver.global.filter.JwtRequestFilter
+import com.example.iceeteaserver.global.filter.config.FilterConfig
+import com.example.iceeteaserver.global.security.handler.CustomAccessDeniedHandler
+import com.example.iceeteaserver.global.security.handler.CustomAuthenticationEntryPoint
+import com.example.iceeteaserver.global.security.jwt.JwtParser
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -10,12 +13,11 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
-    private val jwtRequestFilter: JwtRequestFilter
+    private val jwtParser: JwtParser
 ) {
 
     @Bean
@@ -54,9 +56,18 @@ class SecurityConfig(
             // health
             .antMatchers(HttpMethod.GET, "/health/**").permitAll()
 
-            .anyRequest().denyAll()
+            .anyRequest().permitAll()
             .and()
-            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
+
+            .exceptionHandling()
+            .accessDeniedHandler(CustomAccessDeniedHandler())
+            .and()
+            .httpBasic()
+            .authenticationEntryPoint(CustomAuthenticationEntryPoint())
+            .and()
+
+            .apply(FilterConfig(jwtParser))
+            .and()
             .build()
 
     @Bean
