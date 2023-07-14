@@ -18,8 +18,6 @@ class PurchaseIceteaServiceImpl(
 
     @Transactional(rollbackFor = [Exception::class])
     override fun execute(purchaseRequest: PurchaseRequest) {
-        val flavor = purchaseRequest.flavor
-        if (flavor != "청포도" || flavor != "복숭아" || flavor != "레몬") throw NotExistFlavorException()
         purchaseRepository.save(
             Purchase(
                 UUID.randomUUID(),
