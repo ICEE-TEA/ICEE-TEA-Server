@@ -48,6 +48,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+    /* logging */
+    implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
+    testImplementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
+
     /* test */
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
