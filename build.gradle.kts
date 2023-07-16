@@ -33,7 +33,9 @@ dependencies {
     /* DB */
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
-    implementation("org.mariadb:r2dbc-mariadb:1.1.3")
+    //implementation("org.mariadb:r2dbc-mariadb:1.1.3")
+    implementation("mysql:mysql-connector-java:8.0.32")
+
 
     /* spring app */
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -47,6 +49,10 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    /* logging */
+    implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
+    testImplementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
 
     /* test */
     testImplementation("org.springframework.boot:spring-boot-starter-test")
