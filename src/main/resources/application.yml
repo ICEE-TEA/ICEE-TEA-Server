@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: local
   datasource:
     url: ${DB_URL}
     username: ${DB_USER}
@@ -42,4 +40,3 @@ jwt:
   time:
     accessExp: ${JWT_ACCESS_TIME}
     refreshExp: ${JWT_REFRESH_TIME}
-
